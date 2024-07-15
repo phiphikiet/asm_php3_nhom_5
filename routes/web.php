@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admins.sanphams.them');
+    return view('admins.sanphams.danhsach');
 });

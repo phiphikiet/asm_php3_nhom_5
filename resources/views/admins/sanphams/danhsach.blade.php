@@ -52,7 +52,10 @@
               <td>Ngày nhập</td>
               <td>Danh mục</td>
               <td>Trạng thái</td>
-              <td>Hành động</td>
+              <td>
+                <a href="" class="btn btn-info">Sửa</a>
+                <a href="" class="btn btn-warning">Xóa</a>
+              </td>
             </tbody>
           
           </table>
