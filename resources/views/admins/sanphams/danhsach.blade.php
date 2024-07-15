@@ -18,11 +18,17 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
+            @session('message')
+            <div class="alert alert-success">
+                        {{session('message')}}
+            </div>
+            @endsession
+            
           <h3 class="card-title">Danh sách sản phẩm</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <a class="btn btn-primary" href="">Thêm mới sản phẩm</a>
+          <a class="btn btn-primary" href="{{route("admin.sanpham.create")}}">Thêm mới sản phẩm</a>
           <table id="example2" class="table table-bordered table-hover">
             <thead>
             <tr>
@@ -38,24 +44,36 @@
             </tr>
             </thead>
             <tbody>
-              <td><input type="checkbox"></td>
-              <td>
-                <p class="mb-0">Giày đá bóng loại 1</p>
-                <span>Số lượng : <strong>2</strong></span>
-
-              </td>
-              <td></td>
-              <td>
-                <p class="mb-0">Giá sp : 40.000đ</p>
-                
-              </td>
-              <td>Ngày nhập</td>
-              <td>Danh mục</td>
-              <td>Trạng thái</td>
-              <td>
-                <a href="" class="btn btn-info">Sửa</a>
-                <a href="" class="btn btn-warning">Xóa</a>
-              </td>
+                @foreach($data as $sanpham)
+                <tr>
+                    <td><input type="checkbox" value="{{$sanpham["id"]}}"></td>
+                    <td>
+                      <p class="mb-0">{{ $sanpham["ten_san_pham"]}}</p>
+                      <span>Số lượng : <strong>{{ $sanpham["so_luong"] }}</strong></span>
+      
+                    </td>
+                    <td>{{ $sanpham["mo_ta"] }}</td>
+                    <td>
+                      <p class="mb-0">Giá sp : {{ number_format($sanpham["gia_san_pham"],0,".","."). " đ" }}</p>
+                      
+                    </td>
+                    <td>{{ $sanpham["ngay_nhap"] }}</td>
+                    <td>{{ $sanpham["ten_danh_muc"] }}</td>
+                    <td>{{ $sanpham["trang_thai"]  ? "Kích hoạt" :  "Không kích hoạt" }}</td>
+                    <td>
+                    <div style="display:flex; column-gap:5px">   
+                        <a href="{{route("admin.sanpham.edit",$sanpham["id"])}}" class="btn btn-info">Sửa</a>
+                      <form action="{{route("admin.sanpham.destroy",$sanpham["id"])}}" onsubmit='return confirm("Bạn chắc chắn muốn xóa chứ")' method="POST">
+                        @csrf
+                        @method("DELETE")
+                        <button class=" btn btn-warning">Xóa</button>
+                      </form>
+                    </div>
+                      
+                     
+                    </td>
+                </tr>
+             @endforeach
             </tbody>
           
           </table>

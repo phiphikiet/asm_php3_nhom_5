@@ -4,17 +4,25 @@ namespace App\Http\Controllers\admins;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\SanPham;
 class SanPhamController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    private $model;
+    public function __construct(SanPham $model)
+    {  
+        $this->model = $model;
+        
+    }
     public function index()
     {
         $title = "Quản lý sản phẩm - danh sách sản phẩm";
         $tablename = "Danh sách sản phẩm";
-      
+        $data = $this->model->getAllSanPham();
+        
+       return view("admins.sanphams.danhsach", compact("title", "tablename","data"));
     }
 
     /**
@@ -22,7 +30,9 @@ class SanPhamController extends Controller
      */
     public function create()
     {
-        //
+        $danhmucs = $this->model->getAllDanhMuc();
+        $title = "Quản lý sản phẩm - Thêm mới sản phẩm";
+       return view("admins.sanphams.them", compact("title","danhmucs"));
     }
 
     /**
@@ -30,7 +40,17 @@ class SanPhamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->isMethod("POST")){
+           $data = $request->except("_token");
+            if($request->hasFile("hinh_anh")){
+                $file = $request->file("hinh_anh");
+                $filename = time() . "_".$file->getClientOriginalName();
+                $file->storeAs("public/uploads/sanphams",$filename);
+               $data["hinh_anh"] = $filename;
+            }
+            $this->model->themSanPham($data);
+            return redirect()->route("admin.sanpham.index")->with("message","Thêm mới sản phẩm thành công");
+        }
     }
 
     /**
@@ -46,7 +66,11 @@ class SanPhamController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $danhmucs = $this->model->getAllDanhMuc();
+        $title = "Quản lý sản phẩm - Thêm mới sản phẩm";
+        $data = $this->model->getSanPhamId($id);
+      
+       return view("admins.sanphams.sua", compact("title","danhmucs","data"));
     }
 
     /**
@@ -54,7 +78,18 @@ class SanPhamController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        if($request->isMethod("PUT")){
+           $data = $request->except("_token","_method");
+            if($request->hasFile("hinh_anh")){
+                $file = $request->file("hinh_anh");
+                $filename = time(). "_".$file->getClientOriginalName();
+                $file->storeAs("public/uploads/sanphams",$filename);
+               $data["hinh_anh"] = $filename;
+            }
+            $this->model->suaSanPhamm($data,$id);
+
+            return redirect()->route("admin.sanpham.index")->with("message","Cập nhật sản phẩm thành công");
+        }
     }
 
     /**
@@ -62,6 +97,8 @@ class SanPhamController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
+        $this->model->xoaSanPham($id);
+        return redirect()->route("admin.sanpham.index")->with("message","Xóa sản phẩm thành công");
     }
 }

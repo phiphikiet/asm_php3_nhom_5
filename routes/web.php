@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\admins\SanPhamController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('admins.sanphams.danhsach');
+Route::prefix("admin")->name("admin.")->group(function(){
+    Route::resource("sanpham",SanPhamController::class);
 });
+
+

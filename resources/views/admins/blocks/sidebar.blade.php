@@ -44,13 +44,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>QL danh mục sản phẩm</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
+              <li class="nav-item ">
+                <a href="{{route("admin.sanpham.index")}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>QL sản phẩm</p>
                 </a>
