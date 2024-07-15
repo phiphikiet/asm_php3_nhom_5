@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admins\SanPhamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admins.sanphams.danhsach');
-});
+// Route::get('/', function () {
+//     return view('admins.sanphams.danhsach');
+// });
+Route::resource('sanphams', SanPhamController::class);

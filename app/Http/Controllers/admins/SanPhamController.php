@@ -3,26 +3,30 @@
 namespace App\Http\Controllers\admins;
 
 use App\Http\Controllers\Controller;
+use App\Models\SanPham;
 use Illuminate\Http\Request;
 
 class SanPhamController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public $san_pham;
+    public function __construct()
+    {
+        $this->san_pham = new SanPham();
+    }
     public function index()
     {
+        
         $title = "Quản lý sản phẩm - danh sách sản phẩm";
         $tablename = "Danh sách sản phẩm";
-      
+        $listSanPham = SanPham::get();
+        return view('admins.sanphams.danhsach', compact('title', 'listSanPham'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+
+        $title = "Thêm sản phẩm";
+
+        return view('admins.sanphams.them', compact('title'));
     }
 
     /**
@@ -30,7 +34,12 @@ class SanPhamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('POST')) {
+            $params = $request->except('_token');
+            
+             SanPham::create($params);
+            return redirect()->route('sanphams.index')->with('success', 'Thêm sản phầm thành công!');
+        }
     }
 
     /**
@@ -38,7 +47,6 @@ class SanPhamController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**
@@ -46,7 +54,16 @@ class SanPhamController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $title = "Chỉnh sửa thông tin sản phẩm";
+
+        // Lấy thông tin chi tiết sản phẩm
+        // Sử dụng Query Builder
+        $sanPham = $this->san_pham->getDetailProduct($id);
+
+        // Bằng Eloquent
+        // $sanPham = SanPham::findOrFail($id);
+
+        return view('admins.sanphams.sua', compact('title', 'sanPham'));
     }
 
     /**
