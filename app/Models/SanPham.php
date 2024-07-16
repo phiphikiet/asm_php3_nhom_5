@@ -68,6 +68,12 @@ class SanPham extends Model
      public function xoaSanPham($id){
         return self::query()->where("id",$id)->delete();
      }
+     public function themHinhAnhSanPham($data){
+        return DB::table("tb_hinh_anh_sp")->insert($data);
+     }
+     public function xoaHinhAnhSanPham($id){
+        return DB::table("tb_hinh_anh_sp")->where("san_pham_id",$id)->delete();
+     }
    
 
 }

@@ -59,7 +59,11 @@
                                     <div class="form-group">
                                         <label for="price">Lượt xem</label>
                                         <input type="number" class="form-control" id="price" name="luot_xem" value="{{ old("luot_xem") ?? (int)$data->luot_xem }}" placeholder="Nhập lượt xem">
-                                    </div>     
+                                    </div>  
+                                    <div class="form-group">
+                                        <label for="">Ảnh giới thiệu</label>
+                                        <input type="file" multiple class="form-control" id="price" name="nhieu_anh[]" placeholder="">  
+                                    </div>        
                             </div>
                         
                     </div>

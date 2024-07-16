@@ -41,14 +41,30 @@ class SanPhamController extends Controller
     public function store(Request $request)
     {
         if($request->isMethod("POST")){
-           $data = $request->except("_token");
+           $data = $request->except(["_token","nhieu_anh"]);
             if($request->hasFile("hinh_anh")){
                 $file = $request->file("hinh_anh");
                 $filename = time() . "_".$file->getClientOriginalName();
                 $file->storeAs("public/uploads/sanphams",$filename);
                $data["hinh_anh"] = $filename;
             }
-            $this->model->themSanPham($data);
+             $id = $this->model->themSanPham($data)->id;
+            
+            if($request->hasFile("nhieu_anh")){
+                $data = [];
+                $nhieu_anh = $request->file("nhieu_anh");
+
+                foreach($nhieu_anh as $file){
+                    $filename = time(). "_".$file->getClientOriginalName();
+                    $file->storeAs("public/uploads/sanphams",$filename);
+                    $data[] = [
+                        "san_pham_id" => $id,
+                        "link_anh" => $filename
+                    ];
+                    
+                }
+                $this->model->themHinhAnhSanPham($data);
+            }
             return redirect()->route("admin.sanpham.index")->with("message","Thêm mới sản phẩm thành công");
         }
     }
@@ -79,7 +95,7 @@ class SanPhamController extends Controller
     public function update(Request $request, string $id)
     {
         if($request->isMethod("PUT")){
-           $data = $request->except("_token","_method");
+           $data = $request->except("_token","_method","nhieu_anh");
             if($request->hasFile("hinh_anh")){
                 $file = $request->file("hinh_anh");
                 $filename = time(). "_".$file->getClientOriginalName();
@@ -87,6 +103,23 @@ class SanPhamController extends Controller
                $data["hinh_anh"] = $filename;
             }
             $this->model->suaSanPhamm($data,$id);
+            if($request->hasFile("nhieu_anh")){
+                $data = [];
+                $nhieu_anh = $request->file("nhieu_anh");
+
+                foreach($nhieu_anh as $file){
+                    $filename = time(). "_".$file->getClientOriginalName();
+                    $file->storeAs("public/uploads/sanphams",$filename);
+                    $data[] = [ 
+                        "san_pham_id" => $id,
+                        "link_anh" => $filename
+                    ];
+                    
+                }
+                $this->model->xoaHinhAnhSanPham($id);
+                $this->model->themHinhAnhSanPham($data);
+            }
+          
 
             return redirect()->route("admin.sanpham.index")->with("message","Cập nhật sản phẩm thành công");
         }
