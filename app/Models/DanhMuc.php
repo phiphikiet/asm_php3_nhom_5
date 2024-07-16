@@ -5,10 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class DanhMuc extends Model
 {
-    use HasFactory;
+    use HasFactory ;
+    protected $fillable = [
+        'hinh_anh'
+        ,'ten_danh_muc'
+        ,'mota'
+    ]; 
+    protected $table = "tb_danh_muc";
+    public function getAllDanhMuc(){
+        return $this::query()->get();
+    }
+    public function getDanhMucId($id){
+        return $this::query()->where('id',$id)->first();
+    }
     public function getList()
     {
         $listDanhMuc = DB::table('tb_danh_muc')
@@ -30,13 +42,6 @@ class DanhMuc extends Model
         return $danh_muc;
     }
 
-    // Cách 3: Sử dụng Eloquent
-    protected $table = 'tb_danh_muc';
 
-    protected $fillable = [
-        'hinh_anh',
-        'ten_danh_muc',
-        'mo_ta',
-    ];
 }
 
