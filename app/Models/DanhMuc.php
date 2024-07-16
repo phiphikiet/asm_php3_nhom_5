@@ -12,7 +12,7 @@ class DanhMuc extends Model
     protected $fillable = [
         'hinh_anh'
         ,'ten_danh_muc'
-        ,'mota'
+        ,'mo_ta'
     ]; 
     protected $table = "tb_danh_muc";
     public function getAllDanhMuc(){
@@ -41,7 +41,6 @@ class DanhMuc extends Model
 
         return $danh_muc;
     }
-
 
 }
 

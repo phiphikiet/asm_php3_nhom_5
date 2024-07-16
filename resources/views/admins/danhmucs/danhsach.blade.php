@@ -41,7 +41,7 @@
                 @foreach ($listDanhMuc as $danhMuc)
                 <tr>
                     <td>
-                        <img src="{{ Storage::url($danhMuc->hinh_anh) }}" alt="Hình ảnh danh mục" width="150px">
+                        <img src="{{ Storage::url($danhMuc->hinh_anh) }}" alt="Hình ảnh danh mục" width="100px">
                     </td>
                     <td>{{$danhMuc->ten_danh_muc}}</td>
                     <td>{{$danhMuc->mo_ta}}</td>
@@ -53,6 +53,7 @@
                 @endforeach
               </tbody>
             </table>
+            <h1>update</h1>
 
 @endsection
 

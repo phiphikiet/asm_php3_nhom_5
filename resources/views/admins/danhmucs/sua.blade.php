@@ -43,7 +43,8 @@
                                         <div class="form-group">
                                             <label for="description">Mô tả sản phẩm</label>
                                             <textarea class="form-control" name="mo_ta" rows="3"
-                                                placeholder="Nhập mô tả sản phẩm "value={{ $danhMuc->mo_ta }}></textarea>
+                                             value="{{ $danhMuc->mo_ta }}""
+                                                placeholder="Nhập mô tả sản phẩm"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Cập nhật</button>
                                     </div>

@@ -16,7 +16,7 @@ class DanhMucController extends Controller
     }
     public function index()
     {
-        
+
         $title = "Quản lý sản phẩm - danh sách sản phẩm";
         $tablename = "Danh sách danh mục";
         $listDanhMuc = DanhMuc::get();
@@ -37,9 +37,9 @@ class DanhMucController extends Controller
     {
         if ($request->isMethod('POST')) {
             $params = $request->except('_token');
-            
+
             if ($request->hasFile('hinh_anh')) {
-             
+
                 $filename = $request->file('hinh_anh')->store('public/uploads/danhmucs');
             } else {
                 $filename = null;
@@ -47,8 +47,6 @@ class DanhMucController extends Controller
             $params['hinh_anh'] = $filename;
             DanhMuc::create($params);
             return redirect()->route('danhmucs.index')->with('success', 'Thêm danh mục thành công!');
-
-            
         }
     }
 
