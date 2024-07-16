@@ -97,8 +97,9 @@ class SanPhamController extends Controller
      */
     public function destroy(string $id)
     {
-        
+
         $this->model->xoaSanPham($id);
         return redirect()->route("admin.sanpham.index")->with("message","Xóa sản phẩm thành công");
+        
     }
 }
