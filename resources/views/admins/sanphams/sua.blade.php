@@ -26,31 +26,33 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="name">Tên sản phẩm</label>
-                                            <input type="text" class="form-control" name="ten_san_pham" value="{{ $sanPham->ten_san_pham }}"
-                                                placeholder="Nhập tên sản phẩm">
+                                            <input type="text" class="form-control" name="ten_san_pham"
+                                                value="{{ $sanPham->ten_san_pham }}" placeholder="Nhập tên sản phẩm">
                                         </div>
                                         <div class="form-group">
                                             <label for="description">Mô tả sản phẩm</label>
-                                            <textarea class="form-control" name="mo_ta" rows="3" value="{{ $sanPham->mo_ta}}" placeholder="Nhập mô tả sản phẩm"></textarea>
+                                            <textarea class="form-control" name="mo_ta" rows="3" value="{{ $sanPham->mo_ta }}"
+                                                placeholder="Nhập mô tả sản phẩm"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="price">Giá sản phẩm</label>
-                                            <input type="number" class="form-control" name="gia_san_pham" value="{{ $sanPham->gia_san_pham }}"
-                                                placeholder="Nhập giá sản phẩm">
+                                            <input type="number" class="form-control" name="gia_san_pham"
+                                                value="{{ $sanPham->gia_san_pham }}" placeholder="Nhập giá sản phẩm">
                                         </div>
                                         <div class="form-group">
                                             <label for="price">Giá khuyến mãi</label>
-                                            <input type="number" class="form-control" name="gia_khuyen_mai" value="{{ $sanPham->gia_khuyen_mai }}"
-                                                placeholder="Nhập giá sản phẩm">
+                                            <input type="number" class="form-control" name="gia_khuyen_mai"
+                                                value="{{ $sanPham->gia_khuyen_mai }}" placeholder="Nhập giá sản phẩm">
                                         </div>
                                         <div class="form-group">
                                             <label for="price">Số lượng</label>
-                                            <input type="number" class="form-control" name="so_luong" value="{{ $sanPham->so_luong}}"
-                                                placeholder="Nhập số lượng sản phẩm">
+                                            <input type="number" class="form-control" name="so_luong"
+                                                value="{{ $sanPham->so_luong }}" placeholder="Nhập số lượng sản phẩm">
                                         </div>
                                         <div class="form-group">
-                                            <label for="description">Ngày nhập</label> 
-                                            <input type="date" class="form-control" name="ngay_nhap" value="{{ $sanPham->ngay_nhap }}"> 
+                                            <label for="description">Ngày nhập</label>
+                                            <input type="date" class="form-control" name="ngay_nhap"
+                                                value="{{ $sanPham->ngay_nhap }}">
                                         </div>
 
                                     </div>
@@ -68,7 +70,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <select class="custom-select rounded-0" name="danh_muc_id" value="{{ $sanPham->danh_muc_id }}" style="width: 100%;">
+                                            <select class="custom-select rounded-0" name="danh_muc_id"
+                                                value="{{ $sanPham->danh_muc_id }}" style="width: 100%;">
                                                 <option value="">Chọn loại sản phẩm</option>
                                                 <option value="1">Loại 1</option>
                                                 <option value="2">Loại 2</option>
@@ -110,7 +113,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <select class="custom-select rounded-0" name="trang_thai" value="{{ $sanPham->trang_thai }}" style="width: 100%;">
+                                            <select class="custom-select rounded-0" name="trang_thai"
+                                                value="{{ $sanPham->trang_thai }}" style="width: 100%;">
                                                 <option selected>Trạng thái của sản phẩm</option>
                                                 <option value="0">Hết hàng</option>
                                                 <option value="1">Còn hàng</option>

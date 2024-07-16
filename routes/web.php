@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admins\SanPhamController;
+use App\Http\Controllers\Admins\DanhMucController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,4 @@ use App\Http\Controllers\Admins\SanPhamController;
 //     return view('admins.sanphams.danhsach');
 // });
 Route::resource('sanphams', SanPhamController::class);
+Route::resource('danhmucs', DanhMucController::class);

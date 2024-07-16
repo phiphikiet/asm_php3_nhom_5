@@ -3,30 +3,31 @@
 namespace App\Http\Controllers\admins;
 
 use App\Http\Controllers\Controller;
-use App\Models\SanPham;
+use App\Models\DanhMuc;
 use Illuminate\Http\Request;
 
-class SanPhamController extends Controller
+
+class DanhMucController extends Controller
 {
-    public $san_pham;
+    public $danh_muc;
     public function __construct()
     {
-        $this->san_pham = new SanPham();
+        $this->danh_muc = new DanhMuc();
     }
     public function index()
     {
         
         $title = "Quản lý sản phẩm - danh sách sản phẩm";
-        $tablename = "Danh sách sản phẩm";
-        $listSanPham = SanPham::get();
-        return view('admins.sanphams.danhsach', compact('title', 'listSanPham'));
+        $tablename = "Danh sách danh mục";
+        $listDanhMuc = DanhMuc::get();
+        return view('admins.danhmucs.danhsach', compact('title', 'listDanhMuc'));
     }
     public function create()
     {
 
-        $title = "Thêm sản phẩm";
+        $title = "Thêm danh mục";
 
-        return view('admins.sanphams.them', compact('title'));
+        return view('admins.danhmucs.them', compact('title'));
     }
 
     /**
@@ -37,8 +38,17 @@ class SanPhamController extends Controller
         if ($request->isMethod('POST')) {
             $params = $request->except('_token');
             
-             SanPham::create($params);
-            return redirect()->route('sanphams.index')->with('success', 'Thêm sản phầm thành công!');
+            if ($request->hasFile('hinh_anh')) {
+             
+                $filename = $request->file('hinh_anh')->store('public/uploads/danhmucs');
+            } else {
+                $filename = null;
+            }
+            $params['hinh_anh'] = $filename;
+            DanhMuc::create($params);
+            return redirect()->route('danhmucs.index')->with('success', 'Thêm danh mục thành công!');
+
+            
         }
     }
 
@@ -54,9 +64,9 @@ class SanPhamController extends Controller
      */
     public function edit(string $id)
     {
-        $title = "Chỉnh sửa thông tin sản phẩm";
-        $sanPham = $this->san_pham->getDetailProduct($id);
-        return view('admins.sanphams.sua', compact('title', 'sanPham'));
+        $title = "Chỉnh sửa thông tin danh mục";
+        $danhMuc = $this->danh_muc->getDetailCategory($id);
+        return view('admins.danhmucs.sua', compact('title', 'danhMuc'));
     }
 
     /**
