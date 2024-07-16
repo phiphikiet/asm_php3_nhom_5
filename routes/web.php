@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admins\SanPhamController;
+use App\Http\Controllers\admins\TaiKhoanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,7 @@ use App\Http\Controllers\admins\SanPhamController;
 */
 Route::prefix("admin")->name("admin.")->group(function(){
     Route::resource("sanpham",SanPhamController::class);
+    Route::resource("taikhoan",taikhoanController::class);
 });
 
 
