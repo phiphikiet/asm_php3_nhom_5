@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\admins\DanhMucController;
+use App\Http\Controllers\admins\DonHangController;
+use App\Http\Controllers\admins\SanPhamController;
+use App\Http\Controllers\admins\BinhLuanController;
+use App\Http\Controllers\admins\TaiKhoanController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +20,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admins.sanphams.danhsach');
+    return view('welcome');
 });
+
+Route::resources([
+    'sanpham' => SanPhamController::class,
+    'binhluan' => BinhLuanController::class,
+]);

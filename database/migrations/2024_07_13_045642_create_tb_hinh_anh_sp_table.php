@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('tb_hinh_anh_sp', function (Blueprint $table) {
             $table->id();
-        $table->unsignedBigInteger('san_pham_id');
-        $table->string('link_anh');
-        $table->timestamps();
+            $table->unsignedBigInteger('san_pham_id');
+            $table->string('link_anh');
+            $table->timestamps();
 
         // $table->foreign('san_pham_id')->references('id')->on('tb_san_pham');
         });

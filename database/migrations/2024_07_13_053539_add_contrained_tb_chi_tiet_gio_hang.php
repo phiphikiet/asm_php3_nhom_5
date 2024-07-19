@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table("tb_chi_tiet_gio_hang", function(Blueprint $table){
             $table->foreign('gio_hang_id')->references('id')->on('tb_gio_hang');
-                $table->foreign('san_pham_id')->references('id')->on('tb_san_pham');
+            $table->foreign('san_pham_id')->references('id')->on('tb_san_pham');
         });
         
        

@@ -18,44 +18,55 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Danh sách sản phẩm</h3>
+          <h3 class="card-title">Danh sách bình luận</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <a class="btn btn-primary" href="">Thêm mới sản phẩm</a>
+          {{-- <a class="btn btn-primary" href="{{route('sanpham.create')}}">Thêm mới sản phẩm</a> --}}
+          {{-- Hiển thị thông báo --}}
+          @if (session('success'))
+          <div class="alert alert-success">
+              {{session('success')}}
+          </div>
+          @endif
           <table id="example2" class="table table-bordered table-hover">
             <thead>
             <tr>
               <th></th>
-              <th>Tên sản phẩm</th>
-              <th>Mô tả</th>
-              <th>Gía sản phẩm</th>
-             
-              <th>Danh mục</th>
-              <th>Ngày nhập</th>
+              <th>STT</th>
+              <th>Tài khoản</th>
+              <th>Sản phẩm</th>
+              <th>Nội dung</th>           
+              <th>Thời gian</th>       
               <th>Trạng thái</th>
               <th>Hành động</th>
             </tr>
             </thead>
             <tbody>
-              <td><input type="checkbox"></td>
-              <td>
-                <p class="mb-0">Giày đá bóng loại 1</p>
-                <span>Số lượng : <strong>2</strong></span>
-
-              </td>
-              <td></td>
-              <td>
-                <p class="mb-0">Giá sp : 40.000đ</p>
+              <tr>
+                @foreach ($listBinhLuan as $index => $BinhLuan)
+                <tr>
+                      <td><input type="checkbox"></td>
+                      <td>{{$index +1}}</td>
+                      <td>{{$BinhLuan->tai_khoan_id}}</td>
+                      <td>{{$BinhLuan->san_pham_id}}</td>
+                      <td>{{$BinhLuan->noi_dung}}</td>
+                      <td>{{$BinhLuan->thoi_gian}}</td>
+                      <td>{{$BinhLuan->trang_thai == 1 ? 'Hiển thị' : 'Ẩn'}}</td>
+                  <td>
+                    <a href="{{route('binhluan.edit', $BinhLuan->id)}}" class="btn btn-info">Sửa</a>
+                    <form action="{{route('binhluan.destroy', $BinhLuan->id)}}" method="POST"
+                      class="d-inline" onsubmit="return confirm('Bạn có muốn xóa không?')">
+                      @csrf
+                      @method('DELETE')
+                      <button class="btn btn-danger">Xóa</button>
+                  </form>
+                  </td>
+                </tr>
+                @endforeach
+              </tr>
+              
                 
-              </td>
-              <td>Ngày nhập</td>
-              <td>Danh mục</td>
-              <td>Trạng thái</td>
-              <td>
-                <a href="" class="btn btn-info">Sửa</a>
-                <a href="" class="btn btn-warning">Xóa</a>
-              </td>
             </tbody>
           
           </table>
