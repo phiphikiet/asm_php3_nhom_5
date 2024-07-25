@@ -13,8 +13,9 @@ class BinhLuanController extends Controller
      */
     public function index()
     {
+        $title = "Quản lý bình luận - danh sách bình luận";
         $listBinhLuan = BinhLuan::get();
-        return view('admins.binhluan.danhsach', ['listBinhLuan'=>$listBinhLuan]);
+        return view('admins.binhluans.danhsach', compact('title', 'listBinhLuan'));
     }
 
     /**
@@ -46,8 +47,9 @@ class BinhLuanController extends Controller
      */
     public function edit(string $id)
     {
+        $title = "Quản lý bình luận - chỉnh sửa bình luận";
         $binhluan = BinhLuan::findOrfail($id);
-        return view('admins.binhluan.sua', ['binhluan'=>$binhluan]);
+        return view('admins.binhluans.sua', compact('title', 'binhluan'));
     }
 
     /**

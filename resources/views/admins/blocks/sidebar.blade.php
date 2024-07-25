@@ -44,7 +44,7 @@
                 </li>
                <li class="nav-item">
            
-            <a href="{{route('sanpham.index')}}" class="nav-link">
+            <a href="{{route('admin.sanpham.index')}}" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
               <p>
                 Sản phẩm
@@ -91,7 +91,17 @@
              
             </ul>
           </li>
-         
+          
+          <li class="nav-item">
+          <a href="{{route('binhluan.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-circle"></i>
+            <p>
+              Bình luận
+              {{-- <i class="right fas fa-angle-left"></i> --}}
+            </p>
+          </a>
+         </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

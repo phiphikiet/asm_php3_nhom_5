@@ -21,13 +21,7 @@ Route::prefix("admin")->name("admin.")->group(function(){
     Route::resource("taikhoan",taikhoanController::class);
 });
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::resources([
-    'sanpham' => SanPhamController::class,
     'binhluan' => BinhLuanController::class,
 ]);
 
