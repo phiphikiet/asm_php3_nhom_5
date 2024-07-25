@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('tb_trang_thai_don_hang', function (Blueprint $table) {
             $table->id();
-        $table->string('ten_trang_thai');
-        $table->timestamps();
+            $table->string('ten_trang_thai');
+            $table->timestamps();
         });
     }
 

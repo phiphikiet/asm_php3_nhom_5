@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admins\SanPhamController;
 use App\Http\Controllers\admins\TaiKhoanController;
+use App\Http\Controllers\admins\BinhLuanController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +15,19 @@ use App\Http\Controllers\admins\TaiKhoanController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::prefix("admin")->name("admin.")->group(function(){
     Route::resource("sanpham",SanPhamController::class);
     Route::resource("taikhoan",taikhoanController::class);
 });
 
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::resources([
+    'sanpham' => SanPhamController::class,
+    'binhluan' => BinhLuanController::class,
+]);
 

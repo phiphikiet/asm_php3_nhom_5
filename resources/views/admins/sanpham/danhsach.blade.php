@@ -28,22 +28,35 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+<<<<<<< HEAD:resources/views/admins/sanphams/danhsach.blade.php
           <a class="btn btn-primary" href="{{route("admin.sanpham.create")}}">Thêm mới sản phẩm</a>
+=======
+          <a class="btn btn-primary" href="{{route('sanpham.create')}}">Thêm mới sản phẩm</a>
+          {{-- Hiển thị thông báo --}}
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>
+        @endif
+>>>>>>> kiệt:resources/views/admins/sanpham/danhsach.blade.php
           <table id="example2" class="table table-bordered table-hover">
             <thead>
             <tr>
               <th></th>
+              <th>STT</th>
+              <th>Hình ảnh</th>
               <th>Tên sản phẩm</th>
-              <th>Mô tả</th>
-              <th>Gía sản phẩm</th>
-             
-              <th>Danh mục</th>
+              <th>Số lượng</th>           
+              <th>Gía sản phẩm</th>       
               <th>Ngày nhập</th>
+              <th>Mô tả</th>
+              <th>Danh mục</th>
               <th>Trạng thái</th>
               <th>Hành động</th>
             </tr>
             </thead>
             <tbody>
+<<<<<<< HEAD:resources/views/admins/sanphams/danhsach.blade.php
                 @foreach($data as $sanpham)
                 <tr>
                     <td><input type="checkbox" value="{{$sanpham["id"]}}"></td>
@@ -74,6 +87,32 @@
                     </td>
                 </tr>
              @endforeach
+=======
+              <tr>
+                @foreach ($listSanPham as $index => $SanPham)
+                <tr>
+                      <td><input type="checkbox"></td>
+                      <td>{{$index +1}}</td>
+                      <td>
+                        {{-- <img src="{{Storage::url($SanPham->link_anh)}}" alt=""> --}}
+                      </td>
+                      <td>{{$SanPham->ten_san_pham}}</td>
+                      <td>{{$SanPham->so_luong}}</td>
+                      <td>{{$SanPham->gia_san_pham}}</td>
+                      <td>{{$SanPham->ngay_nhap}}</td>
+                      <td>{{$SanPham->mo_ta}}</td>
+                      <td>{{$SanPham->ten_danh_muc}}</td>
+                      <td>{{$SanPham->trang_thai == 1 ? 'Còn hàng' : 'Hết hàng'}}</td>
+                  <td>
+                    <a href="{{route('sanpham.edit', $SanPham->id)}}" class="btn btn-info">Sửa</a>
+                    <a href="" class="btn btn-warning">Xóa</a>
+                  </td>
+                </tr>
+                @endforeach
+              </tr>
+              
+                
+>>>>>>> kiệt:resources/views/admins/sanpham/danhsach.blade.php
             </tbody>
           
           </table>

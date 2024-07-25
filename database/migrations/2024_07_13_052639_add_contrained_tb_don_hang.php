@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table("tb_don_hang", function(Blueprint $table){
             $table->foreign('nguoi_dung_id')->references('id')->on('tb_tai_khoan');
-             $table->foreign('phuong_thuc_thanh_toan_id')->references('id')->on('tb_phuong_thuc_thanh_toan');
+            $table->foreign('phuong_thuc_thanh_toan_id')->references('id')->on('tb_phuong_thuc_thanh_toan');
             $table->foreign('trang_thai_id')->references('id')->on('tb_trang_thai_don_hang');
         });
         
